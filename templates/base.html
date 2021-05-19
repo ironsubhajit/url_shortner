@@ -18,7 +18,7 @@
 <body>
     <h1>Welcome to url Shortener</h1>
     <form id="post-form">
-        <!-- {% csrf_token %} -->
+        {% csrf_token %}
         <input type="text" name="link" id="link" placeholder="Enter Link">
         <button type="submit">Shorten Link</button>
     </form>
