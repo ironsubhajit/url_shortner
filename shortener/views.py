@@ -18,3 +18,8 @@ def create(request):
         new_url = Url(link=url, uuid=uid)
         new_url.save()
         return HttpResponse(uid)
+
+
+def go(request, pk):
+    url_details = Url.objects.get(uuid=pk)
+    return redirect(f'https://{url_details.link}')
