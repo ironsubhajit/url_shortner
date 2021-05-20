@@ -8,7 +8,11 @@ from .models import Url
 
 # Create your views here.
 def base(request):
-    return render(request, 'base.html')
+    new_urls = Url.objects.all()
+    ctx = {
+        'urls': new_urls
+    }
+    return render(request, 'base.html', context=ctx)
 
 
 def create(request):
