@@ -23,7 +23,14 @@
         <button type="submit">Shorten Link</button>
     </form>
 
-    <section class="shorten-links"><h2></h2></section>
+    <section class="shorten-links">
+        <h2>Short Link: <a href="#" target="_blank" id="recent"></a></h2>
+        <hr>
+        {% for new_url in urls %}
+            <h2>Link: {{ new_url.link }} </h2>
+            <h2>Short Link: <a href="http://127.0.0.1:8000/go/{{ new_url.uuid }}" target="_blank">localhost:8000/go/{{ new_url.uuid }}</a></h2>
+        {% endfor %}
+    </section>
 
     <script src="{% static 'js/app.js' %}"></script>
 </body>
