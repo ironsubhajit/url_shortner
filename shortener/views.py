@@ -9,10 +9,10 @@ from .models import Url
 # Create your views here.
 def base(request):
     new_urls = Url.objects.all()
-
+    total_links = [i+1 for i in range(new_urls.count())]
     ctx = {
         'urls': new_urls,
-
+        'sl': iter(total_links),
     }
     return render(request, 'base.html', context=ctx)
 
