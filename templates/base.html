@@ -39,21 +39,92 @@
         <link rel="stylesheet" href="{% static 'css/home-pg-style.css' %}">
 </head>
 <body>
-    <h1>Welcome to url Shortener</h1>
-    <form id="post-form">
-        {% csrf_token %}
-        <input type="text" name="link" id="link" placeholder="Enter Link">
-        <button type="submit">Shorten Link</button>
-    </form>
+  <div>
+    <nav class="container home-page-nav">
+      <div class="brand-name">
+        <a href="#" class="nav-links btn btn-primary nav-btn">TyniURL</a>
+      </div>
+      <ul class="nav-items">
+        <li>
+          <a href="#" class="btn btn-primary nav-btn">About</a>
+        </li>
+        <li>
+          <a href="{% url 'admin:index' %}" class="btn btn-primary nav-btn">Admin</a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+    
+    <!-- main body -->
+    <div class="content">
+      <div class="card" style="width: 40%;">
+        <img src="{% static 'images/wallpaper.jpg' %}" class="card-img-top" alt="wallpaper">
+        <div class="card-body">
+          <div class="card-text">
+              <form id="post-form">
+                  {% csrf_token %}
+                  <div class="input-group mb-3">
+                  <input type="text" class="form-control" name="link" id="link" placeholder="E N T E R - L I N K" aria-label="Long Link" aria-describedby="button-addon">
+                  <button class="btn btn-outline-primary customize-btn" type="submit" id="button-addon">SHORTEN</button>
+                  </div>
+              </form>
+              
+          </div>
+        </div>
+      </div>
 
-    <section class="shorten-links">
-        <h2>Short Link: <a href="#" target="_blank" id="recent"></a></h2>
-        <hr>
-        {% for new_url in urls %}
-            <h2>Link: {{ new_url.link }} </h2>
-            <h2>Short Link: <a href="http://127.0.0.1:8000/go/{{ new_url.uuid }}" target="_blank">localhost:8000/go/{{ new_url.uuid }}</a></h2>
-        {% endfor %}
-    </section>
+      <div class="card" style="width: 85%;">
+        <div class="card-body">
+          <div class="">
+            <section class="shorten-links">
+              <h6 class="short-link">New link: <a href="#" target="_blank" id="recent"></a></h4>
+            </section>
+            <table class="table table-striped table-hover table-fixed">
+              <thead>
+                <tr class="text-center">
+                  <th scope="col">#</th>
+                  <th scope="col">Actual Link</th>
+                  <th scope="col">Short Link</th>
+                  <th scope="col">Copy Link</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for new_url in urls reversed %}
+                  <tr class="text-center">
+                    {% with sl_no=sl|gen %}
+                    <td scope="row">{{ sl_no }}</td>
+                    <td><a href="{{ new_url.link }}" class="longLink">{{ new_url.link|genshortlen }}</a></td>
+                    <td><a href="http://127.0.0.1:8000/go/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">localhost:8000/go/{{ new_url.uuid }}</a></td>
+                    <td>
+                      <div
+                      class="clicktocopy"
+                      onmouseout="outFunc()"
+                      id="row{{ sl_no }}"
+                      >
+                        <img 
+                        src="{% static 'images/icons/link.svg' %}" 
+                        alt="link-logo" 
+                        class="copy-link-ico"
+                        />
+                        <!-- <span class="tooltiptext" id="tooltip{{ sl_no }}">Click To Copy</span> -->
+                      </div>
+                    </td>
+                    {% endwith %}
+                    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/cursor-creative" title="Cursor Creative">Cursor Creative</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+                  </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  <!-- jQuery CDN -->
+   <script
+   src="https://code.jquery.com/jquery-3.6.0.min.js"
+   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
+   crossorigin="anonymous"></script>
 
     <script src="{% static 'js/app.js' %}"></script>
 </body>
