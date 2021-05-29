@@ -1,0 +1,206 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap'); */
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@1,300&family=Roboto+Slab&display=swap');
+/* css rule: 
+font-family: 'Montserrat', sans-serif;
+font-family: 'Roboto Slab', serif;
+*/
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@300&display=swap');
+/* font-family: 'Roboto Mono', monospace; */
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond&family=Montserrat:wght@300&family=Yeseva+One&display=swap');
+/* 
+font-family: 'Cormorant Garamond', serif;
+font-family: 'Montserrat', sans-serif;
+font-family: 'Yeseva One', cursive;
+*/
+
+
+* {
+    margin: 0px;
+    padding: 0px;
+    box-sizing: border-box;
+    font-family: 'Roboto Mono', monospace;
+    overflow-x: hidden;
+}
+
+nav.home-page-nav{
+    display: flex;
+    justify-content: space-between;
+}
+
+.brand-name a{
+    text-decoration: none;
+}
+
+.brand-name .nav-btn{
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 3px;
+    color: rgb(6, 75, 66);
+    background-color:rgba(127, 255, 212, 0.733);
+    border-color: transparent;
+}
+
+.nav-items li a.nav-btn{
+    font-size: 0.9rem;
+    font-weight: bold;
+    letter-spacing: 2.7px;
+    color: rgb(6, 75, 66);
+    background-color:rgba(127, 255, 212, 0.733);
+    border-color: transparent;
+}
+
+.nav-items{
+    display: flex;
+}
+
+.nav-items li{
+    list-style-type: none;
+    padding: 2px 10px 2px 10px;
+}
+
+.nav-items li .nav-links{
+    padding: 5px 20px 5px 20px;
+    text-decoration: none;
+    font-weight: bold;
+    color: rgb(6, 75, 66);
+    background-color:rgba(127, 255, 212, 0.733);
+    border-color: rgba(127, 255, 212, 0.733);
+}
+
+.page-header {
+    letter-spacing: 3px;
+    text-align: center;
+    font-family: 'Cormorant Garamond', serif;
+    font-weight: bold;
+}
+
+ul.navbar-nav{
+    display: flex!important;
+}
+
+div.content{
+    background-color: transparent;
+}
+
+div.content div.card{
+    margin: auto;
+    justify-content: center;
+    border-style: none;
+}
+
+#link {
+    font-size: 0.7rem;
+}
+/* --------------------------------- */
+
+#post-form .input-group .customize-btn{
+    font-weight: bold;
+    letter-spacing: 3px;
+}
+
+h6.short-link {
+    overflow-y: hidden;
+}
+
+/* copy link icon */
+.table tbody td .clicktocopy .copy-link-ico{
+    width: 2rem;
+    cursor: pointer;
+}
+
+/* -----------------tooltip------------------- */
+
+/*tooltip not working because of possiting issue 
+need re-create tooltip from beg. */
+
+/* td div.mytooltipCls{
+    position: relative;
+    display: inline-block;
+}
+
+td div.mytooltipCls .tooltiptext{
+    visibility: visible;
+    width: 8rem;
+    background-color: black;
+    color: #fff;
+    text-align: center;
+    border-radius: 6px;
+    padding: 5px 0;
+    position: absolute;
+    z-index: 1;
+    top: -2px;
+    left: 125%;
+    opacity: 0;
+    font-size: small;
+    transition: opacity ease-in 0.3s;
+}
+
+.mytooltipCls .tooltiptext::after {
+    content: "";
+    position: absolute;
+    top: 50%;
+    right: 100%;
+    margin-top: -5px;
+    border-width: 5px;
+    border-style: solid;
+    border-color: transparent black transparent transparent;
+}
+
+.mytooltipCls:hover .tooltiptext {
+    visibility: visible;
+    opacity: 1;
+} */
+
+/* ------------------------------- */
+
+.shortLink {
+    text-decoration: none;
+    color: rgb(32, 29, 29);
+}
+
+.longLink{
+    text-decoration: none;
+    color: rgb(32, 29, 29);
+}
+
+
+/* ------------ mobile devices ---------------- */
+
+@media screen and (max-width: 1024px) {
+    
+
+    #link {
+        font-size: 0.6rem;
+    }
+    
+    #post-form .input-group .customize-btn{
+        padding-top: 3px;
+        padding-bottom: 3px;
+        font-size: 10px;
+    }
+
+    .table {
+        font-size: 0.6rem;
+    }
+
+    .table tbody td .clicktocopy .copy-link-ico{
+        width: 1.5rem;
+    }
+}
+
+@media screen and (max-width: 555px) {
+    #post-form .input-group #link{
+        width: 100%;
+        margin-bottom: 5px;
+    }
+
+    #post-form .input-group .customize-btn{
+        margin: auto;
+        justify-content: center;
+    }
+}
+
+/* --------------------------------------------- */
+
