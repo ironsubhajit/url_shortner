@@ -28,4 +28,8 @@ def create(request):
 
 def go(request, pk):
     url_details = Url.objects.get(uuid=pk)
-    return redirect(f'https://{url_details.link}')
+    link = url_details.link
+    if link[:8] == 'https://' or link[:7] == 'http://':
+        return redirect(link)
+    else:
+        return redirect(f'https://{url_details.link}')
