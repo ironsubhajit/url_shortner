@@ -9,8 +9,10 @@ from .models import Url
 # Create your views here.
 def base(request):
     new_urls = Url.objects.all()
+
     ctx = {
-        'urls': new_urls
+        'urls': new_urls,
+
     }
     return render(request, 'base.html', context=ctx)
 
