@@ -75,4 +75,13 @@ $('.clicktocopy').click(function() {
 });
 
 
+// change input link placeholder with diff screen sizes
+var changePlaceholder = function() {
+  if ($(window).width() < 555 ) {
+    $('#link').attr("placeholder", "L I N K");
+  } else {
+    $('#link').attr("placeholder", "E N T E R - L I N K");
+  }
+};
 
+changePlaceholder();
