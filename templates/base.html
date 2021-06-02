@@ -30,7 +30,9 @@
 
     <!-- favicon ends here -->
 
+    {% block page_title %}
     <title>T y n i U R L</title>
+    {% endblock %}
 
     <!-- bootstrap@5.0 cdn -->
         <link
@@ -56,26 +58,29 @@
     src="https://code.jquery.com/jquery-3.6.0.min.js"
     integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
     crossorigin="anonymous"></script>
-
+    
+    {% block custom_css %}
     <!-- custom css -->
-        <link rel="stylesheet" href="{% static 'css/home-pg-style.css' %}">
+    <link rel="stylesheet" href="{% static 'css/home-pg-style.css' %}">
+    {% endblock %}
 </head>
 <body>
-  <div>
-    <nav class="container home-page-nav">
-      <div class="brand-name">
-        <a href="#" class="nav-links btn btn-primary nav-btn">TyniURL</a>
-      </div>
-      <ul class="nav-items">
-        <li>
-          <a href="#" class="btn btn-primary nav-btn">About</a>
-        </li>
-        <li>
-          <a href="{% url 'admin:index' %}" class="btn btn-primary nav-btn">Admin</a>
-        </li>
-      </ul>
-    </nav>
-  </div>
+  {% block content %}
+    <div>
+      <nav class="container home-page-nav">
+        <div class="brand-name">
+          <a href="{% url 'home' %}" class="nav-links btn btn-primary nav-btn">TyniURL</a>
+        </div>
+        <ul class="nav-items">
+          <li>
+            <a href="{% url 'about' %}" class="btn btn-primary nav-btn">About</a>
+          </li>
+          <li>
+            <a href="{% url 'admin:index' %}" class="btn btn-primary nav-btn">Admin</a>
+          </li>
+        </ul>
+      </nav>
+    </div>
     
     <!-- main body -->
     <div class="content">
@@ -116,7 +121,7 @@
                     {% with sl_no=sl|gen %}
                     <td scope="row">{{ sl_no }}</td>
                     <td><a href="{{ new_url.link }}" class="longLink">{{ new_url.link|genshortlen }}</a></td>
-                    <td><a href="http://127.0.0.1:8000/go/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">localhost:8000/go/{{ new_url.uuid }}</a></td>
+                    <td><a href="https://ur9.herokuapp.com/go/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">https://ur9.herokuapp.com/go/{{ new_url.uuid }}</a></td>
                     <td>
                       <div
                       class="clicktocopy"
@@ -142,12 +147,8 @@
       </div>
     </div>
 
-  <!-- jQuery CDN -->
-   <script
-   src="https://code.jquery.com/jquery-3.6.0.min.js"
-   integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4="
-   crossorigin="anonymous"></script>
-
-    <script src="{% static 'js/app.js' %}"></script>
+  <script src="{% static 'js/app.js' %}"></script>
+  
+  {% endblock %}
 </body>
 </html>
