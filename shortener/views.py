@@ -33,3 +33,7 @@ def go(request, pk):
         return redirect(link)
     else:
         return redirect(f'https://{url_details.link}')
+
+
+def about(request):
+    return render(request, 'about.html')
