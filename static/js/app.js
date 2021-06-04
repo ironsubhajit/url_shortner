@@ -9,9 +9,9 @@ $(document).on('submit', '#post-form', function(e){
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
         },
         success: function(data){
-            var newUrl = 'http://127.0.0.1:8000/go/'+data;
+            var newUrl = 'https://ur9.herokuapp.com/go/'+data;
             $('#recent').attr("href", newUrl);
-            $('#recent').html("localhost:8000/go/"+data);
+            $('#recent').html("https://ur9.herokuapp.com/go/"+data);
         }
     });
 });
