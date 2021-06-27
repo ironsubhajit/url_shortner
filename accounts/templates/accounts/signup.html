@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    {% block pg_title %} <title>Sign Up | TyniURL</title> {% endblock %}
+    <!-- bootstrap@4.3 css cdn -->
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+    <!-- fontawesome cdn -->
+    <script src="https://kit.fontawesome.com/5fe89886dc.js" crossorigin="anonymous"></script>
+
+
+    <link rel="stylesheet" href="{% static 'accounts/css/accounts.css' %}">
+</head>
+<body>
+
+<!-- Navbar-->
+<header class="header">
+    <nav class="navbar navbar-expand-lg navbar-light py-3">
+        <div class="container">
+            <!-- Navbar Brand -->
+            <a href="/" class="navbar-brand">
+                <span class="brand-name">TyniURL</span>
+            </a>
+        </div>
+    </nav>
+</header>
+
+
+<div class="container">
+    <div class="row py-5 mt-4 align-items-center">
+        <div class="col-md-5 pr-lg-5 mb-5 mb-md-0">
+            <img src="{% static 'accounts/images/theme/referral.svg' %}" width="300" alt="" class="img-fluid mb-3 d-none d-md-block">
+            {% block subject %}
+            <h1>Create an Account</h1>
+            <p class="font-italic text-muted mb-0">Create and Get Unlimited Access to Shorted Linkes</p>
+            {% endblock %}
+        </div>
+
+        <div class="col-md-7 col-lg-6 ml-auto">
+            <!-- Sign Up Form -->
+            {% block form %}
+            <form action="" method="POST" id="signup_form" name="signup_form">
+                {% csrf_token %}
+                <div class="row">
+
+                    <!-- User Name -->
+                    <div class="input-group col-lg-12 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fas fa-at text-muted"></i>
+                            </span>
+                        </div>
+<!--                       <input id="username" type="text" name="username" placeholder="User Name" class="form-control bg-white border-left-0 border-md">-->
+                        {{ form.username }}
+
+                    </div>
+                    <!--  username errors -->
+                    {% for err in form.username.errors %}
+                        <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid"><small>{{ err }}</small></span>
+                        </div>
+                    {% endfor %}
+
+                    <!-- First Name -->
+                    <div class="input-group col-lg-6 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        {{ form.first_name }}
+                    </div>
+                    {% for err in form.first_name.errors %}
+                         <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid">
+                                <small>{{ err }}</small>
+                            </span>
+                         </div>
+                    {% endfor %}
+
+                    <!-- Last Name -->
+                    <div class="input-group col-lg-6 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-user text-muted"></i>
+                            </span>
+                        </div>
+                        {{ form.last_name }}
+                    </div>
+                    {% for err in form.last_name.errors %}
+                         <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid">
+                                <small>{{ err }}</small>
+                            </span>
+                         </div>
+                    {% endfor %}
+
+                    <!-- Email Address -->
+                    <div class="input-group col-lg-12 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-envelope text-muted"></i>
+                            </span>
+                        </div>
+                        {{ form.email }}
+                    </div>
+                    {% for err in form.email.errors %}
+                         <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid">
+                                <small>{{ err }}</small>
+                            </span>
+                         </div>
+                    {% endfor %}
+
+
+                    <!-- Password -->
+                    <div class="input-group col-lg-6 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        {{ form.password1 }}
+
+                    </div>
+                    {% for err in form.password1.errors %}
+                        <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid">
+                                <small>{{ err }}</small>
+                            </span>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Password Confirmation -->
+                    <div class="input-group col-lg-6 mt-4">
+                        <div class="input-group-prepend">
+                            <span class="input-group-text bg-white px-4 border-md border-right-0">
+                                <i class="fa fa-lock text-muted"></i>
+                            </span>
+                        </div>
+                        {{ form.password2 }}
+                    </div>
+                    {% for err in form.password2.errors %}
+                        <div class="input-group col-lg-12 mt-2 ml-1">
+                            <span class="form-not-valid">
+                                <small>{{ err }}</small>
+                            </span>
+                        </div>
+                    {% endfor %}
+
+                    <!-- Submit Button -->
+                    <div class="form-group col-lg-12 mx-auto mt-4">
+                        <button for="signup_form" type="submit" class="font-weight-bold btn btn-primary btn-block py-2 btn-tyni">Create your account</button>
+                    </div>
+                </div>
+            </form>
+            {% endblock %}
+        </div>
+    </div>
+</div>
+
+<script src="{% static 'accounts/js/accounts.js' %}"></script>
+
+</body>
+</html>
