@@ -75,9 +75,20 @@
           <li>
             <a href="{% url 'about' %}" class="btn btn-primary nav-btn">About</a>
           </li>
+          {% if user.is_superuser %}
           <li>
             <a href="{% url 'admin:index' %}" class="btn btn-primary nav-btn">Admin</a>
           </li>
+          {% endif %}
+          {% if user.is_authenticated %}
+          <li>
+            <a href="{% url 'accounts:logout' %}" class="btn btn-primary nav-btn">Log Out</a>
+          </li>
+          {% else %}
+          <li>
+            <a href="{% url 'accounts:login' %}" class="btn btn-primary nav-btn">login</a>
+          </li>
+          {% endif %}
         </ul>
       </nav>
     </div>
