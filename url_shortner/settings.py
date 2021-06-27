@@ -127,6 +127,12 @@ STATIC_ROOT = Path(BASE_DIR, 'staticfiles')
 STATICFILES_DIRS = [
     Path(BASE_DIR, 'static'),
 ]
+
+
+# After login and logout redirected Url
+LOGIN_REDIRECT_URL = '/'
+LOGOUT_REDIRECT_URL = '/'
+
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
 
