@@ -1,0 +1,55 @@
+{% extends 'accounts/signup.html' %}
+
+{% block pg_title %}
+    <!-- Page Title -->
+    <title>Log in | TyniURL</title>
+{% endblock %}
+
+{% block subject %}
+    <h1>Welcome Back</h1>
+    <p class="font-italic text-muted mb-0">Log in and Get Unlimited Access</p>
+{% endblock %}
+
+{% block form %}
+    <!-- Login Form -->
+    <form action="{% url 'accounts:login' %}" method="POST" id="login_form" name="login_form">
+        {% csrf_token %}
+        <div class="row">
+            <!-- username -->
+            <div class="input-group col-lg-12 mt-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fas fa-at text-muted"></i>
+                    </span>
+                </div>
+                {{ form.username }}
+            </div>
+
+            <!-- Password -->
+            <div class="input-group col-lg-12 mt-4">
+                <div class="input-group-prepend">
+                    <span class="input-group-text bg-white px-4 border-md border-right-0">
+                        <i class="fa fa-lock text-muted"></i>
+                    </span>
+                </div>
+                {{ form.password }}
+            </div>
+            {% if form.errors %}
+                <div class="input-group col-lg-12 mt-2 ml-1">
+                    <span class="form-not-valid">
+                        <small>Username or Password is incorrect, please try again.</small>
+                    </span>
+                </div>
+            {% endif %}
+
+            <!-- Submit Button -->
+            <div class="form-group col-lg-12 mx-auto mt-4">
+                <button for="signup_form" type="submit" class="font-weight-bold btn btn-primary btn-block py-2 btn-tyni">Log in</button>
+            </div>
+            <!-- Already Registered -->
+            <div class="text-center w-100">
+                <p class="text-muted font-weight-bold">Not Registered? <a href="{% url 'accounts:signup' %}" class="text-primary ml-2">Sign Up</a></p>
+            </div>
+        </div>
+    </form>
+{% endblock %}
