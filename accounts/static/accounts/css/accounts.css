@@ -1,0 +1,88 @@
+/*
+*
+* ==========================================
+* CUSTOM UTIL CLASSES
+* ==========================================
+*
+*/
+
+.border-md {
+    border-width: 2px;
+}
+
+.btn-tyni{
+    background: #76A7FA;
+    border: none;
+}
+
+.btn-tyni:hover {
+    background: #4285F4;
+    border: none;
+}
+
+.btn-google {
+    background: #E57368;
+    border: none;
+}
+
+.btn-google:hover, .btn-google:focus {
+    background: #DB4437;
+}
+
+.btn-twitter {
+    background: #42AEEC;
+    border: none;
+}
+
+.btn-twitter:hover, .btn-twitter:focus {
+    background: #1799e4;
+}
+
+
+
+/*
+*
+* ==========================================
+* FOR DEMO PURPOSES
+* ==========================================
+*
+*/
+
+body {
+    min-height: 100vh;
+}
+
+.form-control:not(select) {
+    padding: 1.5rem 0.5rem;
+}
+
+select.form-control {
+    height: 52px;
+    padding-left: 0.5rem;
+}
+
+.form-control::placeholder {
+    color: #ccc;
+    font-weight: bold;
+    font-size: 0.9rem;
+}
+.form-control:focus {
+    box-shadow: none;
+}
+
+/*
+==============================
+extras
+==============================
+*/
+
+.navbar-brand .brand-name{
+    font-size: 4rem;
+    padding-left: 50px;
+    color: #859ab1fa;
+}
+
+/* not valid form detail error  */
+div.input-group span.form-not-valid{
+    color: #DB4437;
+}
