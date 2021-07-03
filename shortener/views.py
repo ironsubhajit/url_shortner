@@ -57,5 +57,15 @@ def create_user_url(request):
             return HttpResponse(uid)
 
 
+@login_required
+def user_url_go(request, pk):
+    url_details = UserUrl.objects.get(uuid=pk)
+    link = url_details.link
+    if link[:8] == 'https://' or link[:7] == 'http://':
+        return redirect(link)
+    else:
+        return redirect(f'https://{url_details.link}')
+
+
 def about(request):
     return render(request, 'about.html')
