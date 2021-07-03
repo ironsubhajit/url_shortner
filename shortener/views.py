@@ -3,7 +3,7 @@ from django.http import HttpResponse
 
 import uuid
 
-from .models import Url
+from .models import Url, UserUrl
 
 
 # Create your views here.
@@ -33,6 +33,17 @@ def go(request, pk):
         return redirect(link)
     else:
         return redirect(f'https://{url_details.link}')
+
+
+def create_user_url(request):
+    if request.method == 'POST':
+        if request.user.is_authenticated:
+            user = request.user # fetch user obj from request
+            url = request.POST['link']
+            uid = str(uuid.uuid4())[:5]  # generate unique id of length 5
+            new_url = UserUrl(user=user, link=url, uuid=uid)
+            new_url.save()
+            return HttpResponse(uid)
 
 
 def about(request):
