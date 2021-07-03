@@ -99,6 +99,15 @@
         <img src="{% static 'images/wallpaper.jpg' %}" class="card-img-top" alt="wallpaper">
         <div class="card-body">
           <div class="card-text">
+            {% if user.is_authenticated %}
+              <form action="" method="POST" id="user-post-form">
+                {% csrf_token %}
+                <div class="input-group mb-3">
+                <input type="text" class="form-control" name="link" id="link" placeholder="E N T E R - L I N K" aria-label="Long Link" aria-describedby="button-addon">
+                <button class="btn btn-outline-primary customize-btn" type="submit" id="button-addon">SHORTEN</button>
+                </div>
+              </form>
+            {% else %}
               <form id="post-form">
                   {% csrf_token %}
                   <div class="input-group mb-3">
@@ -106,7 +115,7 @@
                   <button class="btn btn-outline-primary customize-btn" type="submit" id="button-addon">SHORTEN</button>
                   </div>
               </form>
-              
+            {% endif %}
           </div>
         </div>
       </div>
@@ -115,44 +124,84 @@
         <div class="card-body">
           <div class="">
             <section class="shorten-links">
-              <h6 class="short-link">New link: <a href="#" target="_blank" id="recent"></a></h4>
+              <h6 class="short-link">New link: <a href="#" target="_blank" id="recent"></a></h6>
             </section>
-            <table class="table table-striped table-hover table-fixed">
-              <thead>
-                <tr class="text-center">
-                  <th scope="col">#</th>
-                  <th scope="col">Actual Link</th>
-                  <th scope="col">Short Link</th>
-                  <th scope="col">Copy Link</th>
-                </tr>
-              </thead>
-              <tbody>
-                {% for new_url in urls reversed %}
+            {% if user.is_authenticated %}
+              <table class="table table-striped table-hover table-fixed">
+                <thead>
                   <tr class="text-center">
-                    {% with sl_no=sl|gen %}
-                    <td scope="row">{{ sl_no }}</td>
-                    <td><a href="{{ new_url.link }}" class="longLink">{{ new_url.link|genshortlen }}</a></td>
-                    <td><a href="https://ur9.herokuapp.com/go/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">ur9.herokuapp.com/go/{{ new_url.uuid }}</a></td>
-                    <td>
-                      <div
-                      class="clicktocopy"
-                      onmouseout="outFunc()"
-                      id="row{{ sl_no }}"
-                      >
-                        <img 
-                        src="{% static 'images/icons/link.svg' %}" 
-                        alt="link-logo" 
-                        class="copy-link-ico"
-                        />
-                        <!-- <span class="tooltiptext" id="tooltip{{ sl_no }}">Click To Copy</span> -->
-                      </div>
-                    </td>
-                    {% endwith %}
-                    <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/cursor-creative" title="Cursor Creative">Cursor Creative</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+                    <th scope="col">#</th>
+                    <th scope="col">Actual Link</th>
+                    <th scope="col">Short Link</th>
+                    <th scope="col">Copy Link</th>
                   </tr>
-                {% endfor %}
-              </tbody>
-            </table>
+                </thead>
+                <tbody>
+                  {% for new_url in user_urls reversed %}
+                    <tr class="text-center">
+                      {% with sl_no=user_sl|gen %}
+                      <td scope="row">{{ sl_no }}</td>
+                      <td><a href="{{ new_url.link }}" class="longLink">{{ new_url.link|genshortlen }}</a></td>
+                      <td><a href="https://ur9.herokuapp.com/g/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">ur9.herokuapp.com/g/{{ new_url.uuid }}</a></td>
+                      <td>
+                        <div
+                          class="clicktocopy"
+                          onmouseout="outFunc()"
+                          id="row{{ sl_no }}"
+                        >
+                          <img 
+                            src="{% static 'images/icons/link.svg' %}" 
+                            alt="link-logo" 
+                            class="copy-link-ico"
+                          />
+                          <!-- <span class="tooltiptext" id="tooltip{{ sl_no }}">Click To Copy</span> -->
+                        </div>
+                      </td>
+                      {% endwith %}
+                      <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/cursor-creative" title="Cursor Creative">Cursor Creative</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% else %}
+              <table class="table table-striped table-hover table-fixed">
+                <thead>
+                  <tr class="text-center">
+                    <th scope="col">#</th>
+                    <th scope="col">Actual Link</th>
+                    <th scope="col">Short Link</th>
+                    <th scope="col">Copy Link</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {% for new_url in urls reversed %}
+                    <tr class="text-center">
+                      {% with sl_no=sl|gen %}
+                      <td scope="row">{{ sl_no }}</td>
+                      <td><a href="{{ new_url.link }}" class="longLink">{{ new_url.link|genshortlen }}</a></td>
+                      <td><a href="https://ur9.herokuapp.com/go/{{ new_url.uuid }}" target="_blank" class="shortLink" id="link{{ sl_no }}">ur9.herokuapp.com/go/{{ new_url.uuid }}</a></td>
+                      <td>
+                        <div
+                        class="clicktocopy"
+                        onmouseout="outFunc()"
+                        id="row{{ sl_no }}"
+                        >
+                          <img 
+                          src="{% static 'images/icons/link.svg' %}" 
+                          alt="link-logo" 
+                          class="copy-link-ico"
+                          />
+                          <!-- <span class="tooltiptext" id="tooltip{{ sl_no }}">Click To Copy</span> -->
+                        </div>
+                      </td>
+                      {% endwith %}
+                      <!-- <div>Icons made by <a href="https://www.flaticon.com/authors/cursor-creative" title="Cursor Creative">Cursor Creative</a> from <a href="https://www.flaticon.com/" title="Flaticon">www.flaticon.com</a></div> -->
+                    </tr>
+                  {% endfor %}
+                </tbody>
+              </table>
+            {% endif %}
+            
           </div>
         </div>
       </div>
