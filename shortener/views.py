@@ -8,12 +8,23 @@ from .models import Url, UserUrl
 
 # Create your views here.
 def base(request):
-    new_urls = Url.objects.all()
-    total_links = [i+1 for i in range(new_urls.count())]
-    ctx = {
-        'urls': new_urls,
-        'sl': iter(total_links),
-    }
+    ctx = dict()
+    if request.user.is_authenticated:
+        current_user = request.user
+        # filter out current user created urls
+        user_urls = UserUrl.objects.filter(user=current_user)
+
+        total_user_url_links = [i + 1 for i in range(user_urls.count())]
+        ctx['user_sl'] = iter(total_user_url_links)
+        ctx['user_urls'] = user_urls
+    else:
+        # for anonymous user
+        new_urls = Url.objects.all()
+        total_links = [i + 1 for i in range(new_urls.count())]
+        user_total_links = [i + 1 for i in range(new_urls.count())]
+        ctx['sl'] = iter(total_links)
+        ctx['urls'] = new_urls
+
     return render(request, 'base.html', context=ctx)
 
 
