@@ -12,4 +12,5 @@ urlpatterns = [
          name="create_user_url"
          ),
     path('go/<str:pk>', shortener_views.go, name="go"),
+    path('g/<str:pk>', shortener_views.user_url_go, name="user_url_go"),
 ]
