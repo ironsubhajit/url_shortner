@@ -16,6 +16,24 @@ $(document).on('submit', '#post-form', function(e){
     });
 });
 
+$(document).on('submit', '#user-post-form', function(e){
+    e.preventDefault(); // prevent default reloading page
+
+    $.ajax({
+        type: 'POST',
+        url: '/createurl',
+        data: {
+            link: $('#link').val(),
+            csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
+        },
+        success: function(data){
+            var newUrl = 'https://ur9.herokuapp.com/go/'+data;
+            $('#recent').attr("href", newUrl);
+            $('#recent').html("https://ur9.herokuapp.com/go/"+data);
+        }
+    });
+});
+
 
 // funtions for copy functionality
 function outFunc() {
