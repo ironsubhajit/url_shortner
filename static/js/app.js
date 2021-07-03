@@ -27,9 +27,9 @@ $(document).on('submit', '#user-post-form', function(e){
             csrfmiddlewaretoken: $('input[name=csrfmiddlewaretoken').val(),
         },
         success: function(data){
-            var newUrl = 'https://ur9.herokuapp.com/go/'+data;
+            var newUrl = 'https://ur9.herokuapp.com/g/'+data;
             $('#recent').attr("href", newUrl);
-            $('#recent').html("https://ur9.herokuapp.com/go/"+data);
+            $('#recent').html("https://ur9.herokuapp.com/g/"+data);
         }
     });
 });
