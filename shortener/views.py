@@ -22,7 +22,6 @@ def base(request):
         # for anonymous user
         new_urls = Url.objects.all()
         total_links = [i + 1 for i in range(new_urls.count())]
-        user_total_links = [i + 1 for i in range(new_urls.count())]
         ctx['sl'] = iter(total_links)
         ctx['urls'] = new_urls
 
