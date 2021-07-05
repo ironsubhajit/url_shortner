@@ -50,9 +50,9 @@ def create_user_url(request):
     if request.method == 'POST':
         if request.user.is_authenticated:
             user = request.user # fetch user obj from request
-            url = request.POST['link']
+            link = request.POST['link']
             uid = str(uuid.uuid4())[:5]  # generate unique id of length 5
-            new_url = UserUrl(user=user, link=url, uuid=uid)
+            new_url = UserUrl(user=user, link=link, uuid=uid)
             new_url.save()
             return HttpResponse(uid)
 
@@ -61,6 +61,8 @@ def create_user_url(request):
 def user_url_go(request, pk):
     url_details = UserUrl.objects.get(uuid=pk)
     link = url_details.link
+    print(f"\n--------debug--------\n")
+    print(f"\n{link}\n")
     if link[:8] == 'https://' or link[:7] == 'http://':
         return redirect(link)
     else:
